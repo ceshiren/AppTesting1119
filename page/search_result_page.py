@@ -1,10 +1,9 @@
 from appium.webdriver.common.mobileby import MobileBy
 
+from page.base_page import BasePage
 
-class SearchResultPage:
-    def __init__(self, driver):
-        self.driver=driver
 
+class SearchResultPage(BasePage):
     def get_name(self):
         return self.driver.find_element(MobileBy.ID, "stockName").text
 

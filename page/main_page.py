@@ -3,10 +3,15 @@ from appium.webdriver.common.mobileby import MobileBy
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from page.base_page import BasePage
+from page.profile_page import ProfilePage
 from page.search_page import SearchPage
 
 
-class MainPage:
+
+
+
+class MainPage(BasePage):
     _HOME_SEARCH = "com.xueqiu.android:id/home_search"
 
     def __init__(self):
@@ -33,3 +38,8 @@ class MainPage:
     def search_page(self):
         self.driver.find_element_by_id(self._HOME_SEARCH).click()
         return SearchPage(self.driver)
+
+    def profile_page(self):
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='我的' and contains(@resource-id, 'tab_name')]").click()
+
+        return ProfilePage(self.driver)
