@@ -6,6 +6,7 @@ from appium import webdriver
 
 # 测试用例化改造
 from appium.webdriver.common.mobileby import MobileBy
+from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -13,7 +14,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 # 传统型非PO模式的测试用例
 class TestDemo:
-
+    HOME_SEARCH = "com.xueqiu.android:id/home_search"
 
     # 测试预置装置
     def setup_class(self):
@@ -55,9 +56,13 @@ class TestDemo:
 
     def test_demo2(self):
         driver = self.driver
+        # TouchAction(driver)
+
 
         # driver.find_element(MobileBy.XPATH, "//*[@text='行情' and @resource-id='com.xueqiu.android:id/tab_name']").click()
-        driver.find_element(MobileBy.XPATH, "//*[@text='行情' and contains(@resource-id, 'tab_name')]").click()
+        # driver.find_element(MobileBy.XPATH, "//*[@text='行情' and contains(@resource-id, 'tab_name')]").click()
+        # 1.19.0新增的css表达式
+        driver.find_element(By.CSS_SELECTOR, "[text='行情']").click()
         assert driver.find_element(By.ID, "single_line_quote_name").text == "上证指数"
 
     # 当前类中所有测试用例执行完成后再执行这个方法

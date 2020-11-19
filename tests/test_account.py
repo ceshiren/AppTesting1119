@@ -17,3 +17,6 @@ class TestAccount:
         assert self.main_page \
             .profile_page() \
             .login_by_verify_code_fail('15600534760', '1234') == '验证码已过期'
+
+    def teardown_class(self):
+        self.main_page.quit()
