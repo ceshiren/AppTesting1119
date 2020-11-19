@@ -9,6 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from page.base_page import BasePage
 from page.search_page import SearchPage
 from page.profile_page import ProfilePage
+from page.trade_page import TradePage
 
 
 class MainPage(BasePage):
@@ -45,3 +46,7 @@ class MainPage(BasePage):
         self.driver.find_element(MobileBy.XPATH, "//*[@text='我的' and contains(@resource-id, 'tab_name')]").click()
 
         return ProfilePage(self.driver)
+
+    def trade_page(self):
+        self.find(By.XPATH, "//*[@text='交易']").click()
+        return TradePage(self.driver)
